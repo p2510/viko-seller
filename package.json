@@ -19,6 +19,8 @@
         "vue": "^3.2.31"
     },
     "dependencies": {
-        "swiper": "^10.2.0"
+        "@headlessui/vue": "^1.7.16",
+        "swiper": "^10.2.0",
+        "vue-media-upload": "^2.1.2"
     }
 }
