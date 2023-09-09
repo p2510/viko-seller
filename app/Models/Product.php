@@ -6,13 +6,14 @@ use App\Models\Category;
 use App\Models\ProductPhoto;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Product extends Model
 {
     use HasFactory;
     protected $fillable=[
-        'name','on_sale','price','sale_price','description','brand','quantity','category_id'
+        'name','on_sale','price','sale_price','description','brand','quantity','category_id','user_id'
     ];
     
     public function getRouteKeyName():string{
@@ -34,7 +35,7 @@ class Product extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function product_photo(): HasMany
+    public function product_photos(): HasMany
     {
         return $this->hasMany(ProductPhoto::class, 'product_id', 'id');
     }

@@ -150,7 +150,7 @@ const submit = () => {
                         </Table>
                         <NotResult 
                         v-else
-                            >Nous n'avez pas encore de catégorie enregistrée </NotResult
+                            >Nous n'avez pas encore de catégories enregistrées </NotResult
                         >
                     </section>
                 </div>

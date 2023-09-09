@@ -18,6 +18,13 @@ class ProductController extends Controller
      */
     public function index()
     {
+      
+        $products=Product::where('user_id',auth()->user()->id)->with(['product_photos','categories'])->get()->map(function ($product) {
+            $product->first_photo = $product->product_photos->first();
+            $product->category_name = $product->categories->name;
+            return $product;
+        });
+     
         return Inertia::render('Management/Product/Index')->with([
             'categories'=>Category::where('user_id',auth()->user()->id)->latest()->get()->map(function ($category) {
                 return [
@@ -26,7 +33,10 @@ class ProductController extends Controller
                     'created_at' => $category->CreatedAt, // Assuming 'CreatedAt' is your custom accessor
                     'updated_at' => $category->UpatedAt, 
                 ];
-            })
+            }),
+            'products'=>$products,
+            'urlPhoto'=>url('storage/product-photos')
+            
         ]);
     }
 
@@ -81,6 +91,7 @@ class ProductController extends Controller
                            'quantity'=>$data['quantity'],
                            'category_id'=>$data['category_id'],
                            'description'=>$data['description'],
+                           'user_id'=>auth()->user()->id
                       ] 
         );
                 
