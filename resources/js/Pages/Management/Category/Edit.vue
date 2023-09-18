@@ -22,7 +22,7 @@ const submit = () => {
 </script>
 
 <template>
-    <AppLayout title="Dashboard">
+    <AppLayout title="Gérer mes catégories">
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 Gérer Mes Catégories / Modifier 

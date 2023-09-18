@@ -63,7 +63,7 @@ const submit = () => {
     <AppLayout title="Gérer mes produits" class="relative">
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Gérer Mes produits
+                Gérer Mes Produits
             </h2>
         </template>
 
@@ -118,12 +118,6 @@ const submit = () => {
                                 >
                                     {{ $page.props.flash.message }}
                                 </AlertSuccess>
-                                <AlertWarning
-                                    v-if="$page.props.flash.update"
-                                    class="mt-10"
-                                >
-                                    {{ $page.props.flash.update }}
-                                </AlertWarning>
 
                                 <form
                                     v-if="categories.lengt !== 0"
@@ -369,108 +363,114 @@ const submit = () => {
                         Ajouter un produit
                     </button>
                 </div>
-                
+
+                <AlertWarning v-if="$page.props.flash.update" class="my-6">
+                    {{ $page.props.flash.update }}
+                </AlertWarning>
 
                 <div class="max-w-9xl mx-auto gap-12 w-full p-4">
                     <div class="grid grid-cols-4 gap-12 p-4">
                         <section class="col-span-full space-y-6 w-full">
-                            <!--table oder-->
-                            <Table
-                                v-if="products.length !== 0"
-                                title="Liste de mes produits"
-                                :datahead="dataThead"
-                                class="w-full table-auto"
-                            >
-                                <template #button>
-                                    <Link
-                                        :href="route('category.index')"
-                                        class="bg-slate-800 text-white p-2 rounded-lg hover:bg-slate-700 transition ease-in-out duration-300"
-                                    >
-                                        Exporter
-                                    </Link>
-                                </template>
-                                <template #tbody>
-                                    <tr
-                                        v-for="(product, index) in products"
-                                        :key="index"
-                                        class="bg-white dark:bg-gray-800 dark:border-gray-700"
-                                    >
-                                        <th
-                                            scope="row"
-                                            class="px-6 py-4 font-bold text-gray-900 whitespace-nowrap dark:text-white"
+                                <!--table oder-->
+                                <Table
+                                    v-if="products.length !== 0"
+                                    title="Liste de mes produits"
+                                    :datahead="dataThead"
+                                    class="w-full table-auto"
+                                >
+                                    <template #button>
+                                        <Link
+                                            :href="route('category.index')"
+                                            class="bg-slate-800 text-white p-2 rounded-lg hover:bg-slate-700 transition ease-in-out duration-300"
                                         >
-                                            {{ product.name }}
-                                        </th>
-                                        <td
-                                            class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                                            Exporter
+                                        </Link>
+                                    </template>
+                                    <template #tbody>
+                                        <tr
+                                            v-for="(product, index) in products"
+                                            :key="index"
+                                            class="bg-white dark:bg-gray-800 dark:border-gray-700"
                                         >
-                                            <img
-                                                :src="
-                                                    urlPhoto +
-                                                    '/' +
-                                                    product.first_photo.name
-                                                "
-                                                :alt="product.name"
-                                                class="w-16 h-16"
-                                            />
-                                        </td>
-                                        <td
-                                            class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                                        >
-                                            {{ product.brand }}
-                                        </td>
-                                        <td
-                                            class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                                        >
-                                            {{ product.category_name }}
-                                        </td>
-                                        <td
-                                            class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                                        >
-                                            {{ product.price }} F
-                                        </td>
-                                        <td
-                                            class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                                        >
-                                            {{ product.sale_price }} F
-                                        </td>
-                                        <td
-                                            class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                                        >
-                                            {{ product.quantity }}
-                                        </td>
-                                        <td
-                                            v-if="product.on_sale"
-                                            class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                                        >
-                                            Oui
-                                        </td>
-                                        <td
-                                            v-else
-                                            class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                                        >
-                                            Non
-                                        </td>
-                                        <td
-                                            class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
-                                        >
-                                            <ActionButton
-                                                deletelink="product.destroy"
-                                                :deleteid="product.name"
-                                                :updatelink="
-                                                    route(
-                                                        'product.edit',
-                                                        product.name
-                                                    )
-                                                "
-                                            />
-                                        </td>
-                                    </tr>
-                                </template>
-                            </Table>
-                            <NotResult v-else
-                                >Nous n'avez pas encore de produits enregistrés
-                            </NotResult>
+                                            <th
+                                                scope="row"
+                                                class="px-6 py-4 font-bold text-gray-900 whitespace-nowrap dark:text-white"
+                                            >
+                                                {{ product.name }}
+                                            </th>
+                                            <td
+                                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                                            >
+                                                <img
+                                                    :src="
+                                                        urlPhoto +
+                                                        '/' +
+                                                        product.first_photo.name
+                                                    "
+                                                    :alt="product.name"
+                                                    class="w-16 h-16"
+                                                />
+                                            </td>
+                                            <td
+                                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                                            >
+                                                {{ product.brand }}
+                                            </td>
+                                            <td
+                                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                                            >
+                                                {{ product.category_name }}
+                                            </td>
+                                            <td
+                                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                                            >
+                                                {{ product.price }} F
+                                            </td>
+                                            <td
+                                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                                            >
+                                                {{ product.sale_price }} F
+                                            </td>
+                                            <td
+                                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                                            >
+                                                {{ product.quantity }}
+                                            </td>
+                                            <td
+                                                v-if="product.on_sale"
+                                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                                            >
+                                                Oui
+                                            </td>
+                                            <td
+                                                v-else
+                                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                                            >
+                                                Non
+                                            </td>
+                                            <td
+                                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
+                                            >
+                                                <ActionButton
+                                                    deletelink="product.destroy"
+                                                    :deleteid="product.name"
+                                                    :updatelink="
+                                                        route(
+                                                            'product.edit',
+                                                            product.name
+                                                        )
+                                                    "
+                                                />
+                                            </td>
+                                        </tr>
+                                    </template>
+                                </Table>
+                            
+                                <NotResult v-else
+                                    >Nous n'avez pas encore de produits
+                                    enregistrés
+                                </NotResult>
+                            
                         </section>
                     </div>
                 </div>

@@ -5,6 +5,10 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\FlashSaleController;
+use App\Http\Controllers\PaymentType\WaveController;
+use App\Http\Controllers\PaymentType\DjamoController;
+use App\Http\Controllers\PaymentType\OrangeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,6 +48,12 @@ Route::middleware([
     Route::resource('category', CategoryController::class);
     // product management
     Route::resource('product', ProductController::class);
+    // payment type
+    Route::resource('wave', WaveController::class);
+    Route::resource('orange', OrangeController::class);
+    Route::resource('djamo', DjamoController::class);
+    //flash sale
+    Route::resource('flashsale', FlashSaleController::class);
     
     
 });

@@ -149,5 +149,11 @@ return [
         'adress' => 'adresse',
         'location' => 'position',
         'terms' => 'conditions',
+        'on_sale'=>'en promotion',
+        'price'=>'prix',
+        'sale_price'=>'prix de promotion',
+        'brand'=>'marque',
+        'quantity'=>'quantité',
+        'category_id'=>'catégorie',
     ]
 ];
